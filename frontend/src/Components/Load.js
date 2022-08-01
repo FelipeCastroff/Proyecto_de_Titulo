@@ -62,7 +62,7 @@ export const Load = () => {
             setSim(data)
         }
 
-        else if (v === "Distance") {
+        else if (v === "Typical Mesh Size") {
             console.log("Consulta Distancia")
             const res = await fetch(`${API}/Load_data/distance/${searchInput}`)
             const data = await res.json()
@@ -166,7 +166,7 @@ export const Load = () => {
                                 <Dropdown.Menu>
                                     <Dropdown.Item onClick={e => setSearch('ID')}>ID</Dropdown.Item>
                                     <Dropdown.Item onClick={e => setSearch('Porosity')}>Porosity</Dropdown.Item>
-                                    <Dropdown.Item onClick={e => setSearch('Distance')}>Distance</Dropdown.Item>
+                                    <Dropdown.Item onClick={e => setSearch('Typical Mesh Size')}>Typical Mesh Size</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </Col>

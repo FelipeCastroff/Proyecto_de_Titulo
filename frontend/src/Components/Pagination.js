@@ -13,6 +13,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
 
     }
     if (opcion === 1) {
+        // Avanzar
       if (number1 > totalPosts / 10) {
         number1 = number1
         console.log(number1)
@@ -24,16 +25,9 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
       }
     }
     if (opcion === 2) {
-      console.log("trunc",Math.trunc(totalPosts / 10))
-      if (number1 >= Math.trunc(totalPosts / 10)) {
-        
-
-        paginate(number1 - 1)
-        number1 = number1 - 1
-        console.log(number1)
-      } else {
-        number1 = number1
-        console.log("number1 pre:",number1)
+      if (number1 > 1){
+        paginate(number1-1)
+        number1 = number1-1
       }
 
     }

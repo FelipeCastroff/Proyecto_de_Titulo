@@ -15,15 +15,7 @@ RUN apt-get install -y libboost-container-dev
 RUN apt-get install -y python3-dolfin
 RUN apt-get install -y python3-mshr
 
-#RUN apt install python3-dolfin-real
 COPY ./requeriments.txt /app/requeriments.txt
-
-# RUN git clone https://bitbucket.org/fenics-project/dolfin
-# RUN git clone https://bitbucket.org/fenics-project/mshr
-# RUN mkdir dolfin/build && cd dolfin/build && cmake .. && make install && cd ../..
-# RUN mkdir mshr/build   && cd mshr/build   && cmake .. && make install && cd ../..
-# RUN cd dolfin/python && pip3 install . && cd ../..
-# RUN cd mshr/python   && pip3 install . && cd ../..
 
 RUN python3 --version
 RUN pip3 --version
@@ -32,25 +24,10 @@ RUN pip3 --version
 WORKDIR /app
 RUN pip install -r ./requeriments.txt
 
-#RUN FENICS_VERSION=$(python3 -c"import ffc; print(ffc.__version__)")
-
-#RUN git clone https://bitbucket.org/fenics-project/dolfin
-#RUN git clone https://bitbucket.org/fenics-project/mshr
-
-#RUN mkdir dolfin/build && cd dolfin/build && cmake .. && make install && cd ../..
-#RUN mkdir mshr/build   && cd mshr/build   && cmake .. && make install && cd ../..
-#RUN cd dolfin/python && pip3 install . && cd ../..
-#RUN cd mshr/python   && pip3 install . && cd ../..
-
-#RUN mkdir dolfin/build && cd dolfin/build && cmake .. && make install && cd ../..
-#RUN mkdir mshr/build   && cd mshr/build   && cmake .. && make install && cd ../..
-#RUN cd dolfin/python && pip3 install . && cd ../..
-#RUN cd mshr/python   && pip3 install . && cd ../..
-
 COPY . /app
 
 EXPOSE 80
 
 ENTRYPOINT [ "python3" ]
 
-CMD [ "src/main.py" ]
+CMD [ "src/main.py" ] 

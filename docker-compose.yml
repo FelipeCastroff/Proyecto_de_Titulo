@@ -1,21 +1,32 @@
-version: "3"
+version: "3.3"
+
+
+### En volumenes de mysql ocupa el archivo init.sql el cual esta en la
+### carpeta db al inicio del proyecto, para crear las tablas correspondientes
 
 services:
-    basedatos:
-        container_name: mysqldb
+    mysql:
+        container_name: mysql
         restart: always
-        image: mysql:5.7
+        expose:
+            - 3306
+        image: mysql:8.0.21
         volumes: 
-          - db_data:/var/lib/mysql
+          #- db_data:/var/lib/mysql
+          - ./db:/docker-entrypoint-initdb.d/:ro
+          #- ./db:/docker-entrypoint-initdb.d/init.sql
         environment:
-          MYSQL_ROOT_PASSWORD: informatica1109997
-          MYSQL_DATABASE: BDAT-FE-simulations
+          MYSQL_ROOT_PASSWORD: informatica110997
+          MYSQL_DATABASE: knights
           MYSQL_USER: UserBDAT
-          MYSQL_PASSWORD: informatica1109997
+          MYSQL_ROOT_HOST: 0.0.0.0
+          MYSQL_PASSWORD: informatica110997
+        networks:
+            - red_privada
 
     backend:
         depends_on:
-            - basedatos
+            - mysql
         build:
             context: ./backend
             dockerfile: Dockerfile
@@ -27,11 +38,11 @@ services:
             - red-proxy
             - red_privada
         environment: 
-            VIRTUAL_HOST: localhost2
+            VIRTUAL_HOST: localhost
 
     frontend:
         depends_on:
-          - basedatos
+          - mysql
           - backend
         build:
             context: ./frontend/
@@ -41,7 +52,7 @@ services:
         networks: 
             - red-proxy
         environment: 
-            VIRTUAL_HOST: localhost
+            VIRTUAL_HOST: localhost2
 
    
 networks: 

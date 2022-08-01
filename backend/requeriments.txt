@@ -10,4 +10,4 @@ fenics == 2019.1.0
 fenics-ffc == 2019.1.0.post0
 scipy == 1.3.3
 numpy == 1.17.4
-pandas == 1.3.4
+pandas == 1.1.5
